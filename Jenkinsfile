@@ -10,14 +10,14 @@ pipeline {
                  '''
              }
          }
-        //  stage('Lint HTML') {
-        //       steps {
-        //           sh 'tidy -q -e *.html'
-        //       }
-        //  }
+         stage('Lint HTML') {
+              steps {
+                  sh 'tidy -q -e *.html'
+              }
+         }
          stage('Upload to AWS') {
               steps {
-                  withAWS(region:'us-east-2',credentials:'Tarunima2811') {
+                  withAWS(region:'us-east-2',credentials:'AKIA2P3VEPC5UOKWLUIX/QB0lscPzRJeob/3PwczsBnCgDOgu3ZbZuyuiqyeF') {
                   sh 'echo "Uploading content with AWS creds"'
                       s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'index.html', bucket:'static-jenkins-pipeline')
                   }
